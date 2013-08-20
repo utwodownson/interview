@@ -1,4 +1,4 @@
-/* here are two sorted arrays A and B of size m and n respectively. 
+/* There are two sorted arrays A and B of size m and n respectively. 
  * Find the median of the two sorted arrays. 
  * The overall run time complexity should be O(log (m+n)).
  */
@@ -8,10 +8,10 @@
 #include <iostream>
 using namespace std;
 
-long findK(long A[], long m, long B[], long n, long k) {
+int findK(int A[], int m, int B[], int n, int k) {
     while (k > 1 && m > 0 && n > 0) {
-        long ka = k * m / (m + n);
-        long kb = k * n / (m + n);
+        int ka = k * m / (m + n);
+        int kb = k * n / (m + n);
         if (ka + kb < k) {
             if (ka < kb) ka++;
             else kb++;
@@ -35,39 +35,37 @@ long findK(long A[], long m, long B[], long n, long k) {
     else return 0;
 }
 
-long findMedianSortedArrays(long A[], long m, long B[], long n) {
+double findMedianSortedArrays(int A[], int m, int B[], int n) {
     // Start typing your C/C++ solution below
-    // DO NOT write long long main() function
-    //long long ka = (m + n + 1) / 2, kb = (m + n) / 2 + 1;
-    //prlong longf("%lf\n", (findK(A, m, B, n, ka) + findK(A, m, B, n, kb)) / 2.0);
-    //return (findK(A, m, B, n, ka) + findK(A, m, B, n, kb)) / 2.0;
-    long k = (m + n) / 2 + 1;
-    return findK(A, m, B, n, k);
+    // DO NOT write int main() function
+    int ka = (m + n + 1) / 2, kb = (m + n) / 2 + 1;
+    //printf("%lf\n", (findK(A, m, B, n, ka) + findK(A, m, B, n, kb)) / 2.0);
+    return (findK(A, m, B, n, ka) + findK(A, m, B, n, kb)) / 2.0;
 }
 
 int main()
 {
-    long A[10000], B[10000];
-    long m, n;
-    scanf("%ld", &m);
+    int A[1000000], B[1000000];
+    int m, n;
+    scanf("%d", &m);
     for (int i = 0; i < m; ++i)
-        scanf("%ld", &A[i]);
-    scanf("%ld", &n);
+        scanf("%d", &A[i]);
+    scanf("%d", &n);
     for (int i = 0; i < n; ++i)
-        scanf("%ld", &B[i]);
-    printf("%ld\n", findMedianSortedArrays(A, m, B, n));
+        scanf("%d", &B[i]);
+    printf("%.lf\n", findMedianSortedArrays(A, m, B, n));
     /*
-    long long A[] = { 1, 3, 5, 7, 9 };
-    long long B[] = { 2, 4, 6, 8 };
+    int A[] = { 1, 3, 5, 7, 9 };
+    int B[] = { 2, 4, 6, 8 };
 
-    long long C[] = { 1, 2, 3, 4, 5 };
-    long long D[] = { 6, 7, 8, 9 };
+    int C[] = { 1, 2, 3, 4, 5 };
+    int D[] = { 6, 7, 8, 9 };
 
-    long long E[] = { 1, 2, 3 };
-    long long F[] = { 4, 5, 6, 7, 8, 9 };
+    int E[] = { 1, 2, 3 };
+    int F[] = { 4, 5, 6, 7, 8, 9 };
 
-    long long G[] = { 7, 8, 9 };
-    long long H[] = { 1, 2, 3, 4, 5, 6 };
+    int G[] = { 7, 8, 9 };
+    int H[] = { 1, 2, 3, 4, 5, 6 };
 
     findMedianSortedArrays(A, 5, B, 4);
     findMedianSortedArrays(C, 5, D, 4);
